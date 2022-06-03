@@ -1,0 +1,5 @@
+#!/bin/sh
+PROG=merge                      # base name of program
+NUM_POS=6                       # number of positive tests
+NUM_NEG=4                       # number of negative tests
+CMP_OPTS=""                     # optional compiler options

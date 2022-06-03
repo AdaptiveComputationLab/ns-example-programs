@@ -1,0 +1,28 @@
+version: "1.0"
+
+blueprints:
+  - type: docker
+    tag: adaptivecomputationlab/ns-example-programs:zune
+
+bugs:
+  - name: ns-example-programs:zune
+    dataset: ns-example-programs
+    program: zune
+    image: adaptivecomputationlab/ns-example-programs:zune
+    languages:
+    - c
+    source-location: /experiment/source
+    compiler:
+      time-limit: 20
+      type: simple
+      context: /experiment/source
+      command: gcc zune.c -o zune
+      command_with_instrumentation: gcc zune.c -o zune --coverage
+    coverage:
+      files-to-instrument:
+        - zune.c
+    test-harness:
+      failing: 4
+      passing: 18
+      time-limit: 5
+      type: genprog

@@ -1,0 +1,10 @@
+--program merge.c
+--pos-tests 6
+--neg-tests 4
+--search ga
+--fault-scheme uniform
+--fix-scheme uniform
+--promut 1
+--popsize 200
+--generations 20
+--compiler gcc

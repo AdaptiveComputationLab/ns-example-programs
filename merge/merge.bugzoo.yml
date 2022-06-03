@@ -1,0 +1,28 @@
+version: "1.0"
+
+blueprints:
+  - type: docker
+    tag: adaptivecomputationlab/ns-example-programs:merge
+
+bugs:
+  - name: ns-example-programs:merge
+    dataset: ns-example-programs
+    program: merge
+    image: adaptivecomputationlab/ns-example-programs:merge
+    languages:
+    - c
+    source-location: /experiment/source
+    compiler:
+      time-limit: 20
+      type: simple
+      context: /experiment/source
+      command: gcc merge.c -o merge
+      command_with_instrumentation: gcc merge.c -o merge --coverage
+    coverage:
+      files-to-instrument:
+        - merge.c
+    test-harness:
+      failing: 4
+      passing: 6
+      time-limit: 5
+      type: genprog

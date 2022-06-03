@@ -1,0 +1,28 @@
+version: "1.0"
+
+blueprints:
+  - type: docker
+    tag: adaptivecomputationlab/ns-example-programs:gcd
+
+bugs:
+  - name: ns-example-programs:gcd
+    dataset: ns-example-programs
+    program: gcd
+    image: adaptivecomputationlab/ns-example-programs:gcd
+    languages:
+    - c
+    source-location: /experiment/source
+    compiler:
+      time-limit: 20
+      type: simple
+      context: /experiment/source
+      command: gcc gcd.c -o gcd
+      command_with_instrumentation: gcc gcd.c -o gcd --coverage
+    coverage:
+      files-to-instrument:
+        - gcd.c
+    test-harness:
+      failing: 1
+      passing: 10
+      time-limit: 5
+      type: genprog
